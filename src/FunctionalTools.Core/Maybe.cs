@@ -4,6 +4,13 @@ using JetBrains.Annotations;
 
 namespace FunctionalTools.Core
 {
+    /// <summary>
+    /// Struct for simplifying null value handling.
+    /// <remarks>
+    /// Inspired by V. Khorikov's example in the "Applying Functional Principles in C#".
+    /// </remarks>
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
     public readonly struct Maybe<T> : IEquatable<Maybe<T>> where T : class
     {
         //--------------------------------------------------
@@ -16,8 +23,8 @@ namespace FunctionalTools.Core
 
         public bool HasValue => !this.HasNoValue;
 
-        // ReSharper disable once AssignNullToNotNullAttribute
         [NotNull]
+        // ReSharper disable once AssignNullToNotNullAttribute
         public T Value => this.HasNoValue
             ? throw new InvalidOperationException(Constants.ErrorMessages.MaybeHasNoValueUnWrap)
             : this._value;
