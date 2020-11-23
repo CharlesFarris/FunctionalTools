@@ -32,9 +32,19 @@ namespace FunctionalTools.Core
 
         //--------------------------------------------------
         [NotNull]
-        public static Result<T> ToResult<T>([NotNull] T value, [CanBeNull] string tag = null)
+        public static Result<T> ToResult<T>([NotNull] this T value, [CanBeNull] string tag = null)
         {
             return Result<T>.Success(value, tag);
+        }
+
+        //--------------------------------------------------
+        [NotNull]
+        public static Result<T> ToResultNotNull<T>([CanBeNull] this T value, [CanBeNull] string tag = null)
+            where T : class
+        {
+            return value is null
+                ? Result<T>.Failure(tag)
+                : Result<T>.Success(value, tag);
         }
     }
 }

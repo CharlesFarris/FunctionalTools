@@ -46,5 +46,71 @@ namespace FunctionalTools.Core.Test
                 }
             });
         }
+
+        //--------------------------------------------------
+        [Test]
+        public static void ToResult_ValidatesBehavior()
+        {
+            Assert.Multiple(() =>
+            {
+                // use case: default tag value
+                {
+                    var value = new object();
+                    var result = value.ToResult();
+                    Assert.That(result.State, Is.EqualTo(ResultState.Success));
+                    Assert.That(result.Unwrap(), Is.EqualTo(value));
+                    Assert.That(result.Tag, Is.EqualTo(string.Empty));
+                }
+
+                // use case: custom tag value
+                {
+                    var value = new object();
+                    var result = value.ToResult(tag: "tag");
+                    Assert.That(result.State, Is.EqualTo(ResultState.Success));
+                    Assert.That(result.Unwrap(), Is.EqualTo(value));
+                    Assert.That(result.Tag, Is.EqualTo("tag"));
+                }
+            });
+        }
+
+        //--------------------------------------------------
+        [Test]
+        public static void ToResultNotNull_ValidatesBehavior()
+        {
+            Assert.Multiple(() =>
+            {
+                // use case: fail on null value default tag
+                {
+                    var result = default(object).ToResultNotNull();
+                    Assert.That(result.State, Is.EqualTo(ResultState.Failure));
+                    Assert.That(result.Tag, Is.EqualTo(string.Empty));
+                }
+
+                // use case: fail on null value custom tag
+                {
+                    var result = default(object).ToResultNotNull(tag: "tag");
+                    Assert.That(result.State, Is.EqualTo(ResultState.Failure));
+                    Assert.That(result.Tag, Is.EqualTo("tag"));
+                }
+
+                // use case: success default tag
+                {
+                    var value = new object();
+                    var result = value.ToResultNotNull();
+                    Assert.That(result.State, Is.EqualTo(ResultState.Success));
+                    Assert.That(result.Unwrap(), Is.EqualTo(value));
+                    Assert.That(result.Tag, Is.EqualTo(string.Empty));
+                }
+
+                // use case: success custom tag
+                {
+                    var value = new object();
+                    var result = value.ToResultNotNull(tag: "tag");
+                    Assert.That(result.State, Is.EqualTo(ResultState.Success));
+                    Assert.That(result.Unwrap(), Is.EqualTo(value));
+                    Assert.That(result.Tag, Is.EqualTo("tag"));
+                }
+            });
+        }
     }
 }
