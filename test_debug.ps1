@@ -1,0 +1,1 @@
+dotnet test -c Debug .\src\FunctionalTools.Core.Test\FunctionalTools.Core.Test.csproj
