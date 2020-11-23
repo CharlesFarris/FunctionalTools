@@ -1,4 +1,7 @@
-﻿namespace FunctionalTools.Core
+﻿using System;
+using JetBrains.Annotations;
+
+namespace FunctionalTools.Core
 {
     public enum ResultState
     {
@@ -6,14 +9,18 @@
         Success = 1,
         Failure = 2
     }
-    
+
     public abstract class ResultBase
     {
-        public ResultState State { get; }
-
-        protected ResultBase(ResultState state)
+        //--------------------------------------------------
+        protected ResultBase(ResultState state, [NotNull] string tag)
         {
             this.State = state;
+            this.Tag = tag ?? throw new ArgumentNullException(nameof(tag));
         }
+
+        public ResultState State { get; }
+
+        [NotNull] public string Tag { get; }
     }
 }
