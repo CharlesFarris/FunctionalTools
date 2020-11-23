@@ -26,7 +26,7 @@ namespace FunctionalTools.Core
         [NotNull]
         // ReSharper disable once AssignNullToNotNullAttribute
         public T Value => this.HasNoValue
-            ? throw new InvalidOperationException(Constants.ErrorMessages.MaybeHasNoValueUnWrap)
+            ? throw new InvalidOperationException(Constants.ErrorMessages.MaybeHasNoValue)
             : this._value;
 
         public static readonly Maybe<T> Empty = new Maybe<T>(default);
@@ -67,12 +67,13 @@ namespace FunctionalTools.Core
         public override string ToString()
         {
             return this.HasNoValue
-                ? "No Value."
+                ? "No Value"
                 // ReSharper disable once PossibleNullReferenceException
                 : this._value.ToString();
         }
 
         //--------------------------------------------------
+        [CanBeNull]
         public T Unwrap([CanBeNull] T defaultValue = default)
         {
             return this.HasNoValue
