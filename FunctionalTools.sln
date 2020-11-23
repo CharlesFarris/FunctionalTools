@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FunctionalTools.Core", "src\FunctionalTools.Core\FunctionalTools.Core.csproj", "{92E4C34A-1FD9-45DE-B2AE-5815021254C6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FunctionalTools.Core.Test", "src\FunctionalTools.Core.Test\FunctionalTools.Core.Test.csproj", "{75098F46-7B9C-48F6-B1FD-C92A0D79C7BE}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{92E4C34A-1FD9-45DE-B2AE-5815021254C6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{92E4C34A-1FD9-45DE-B2AE-5815021254C6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{92E4C34A-1FD9-45DE-B2AE-5815021254C6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{92E4C34A-1FD9-45DE-B2AE-5815021254C6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{75098F46-7B9C-48F6-B1FD-C92A0D79C7BE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{75098F46-7B9C-48F6-B1FD-C92A0D79C7BE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{75098F46-7B9C-48F6-B1FD-C92A0D79C7BE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{75098F46-7B9C-48F6-B1FD-C92A0D79C7BE}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
