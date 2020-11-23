@@ -40,7 +40,7 @@ namespace FunctionalTools.Core.Test
                 // use case:  failure action not called if success
                 {
                     var failureActionCalled = false;
-                    var _ = Result<object>.Success()
+                    var _ = Result<object>.Success(new object())
                         .OnFailure(result => { failureActionCalled = true; });
                     Assert.That(failureActionCalled, Is.False);
                 }
