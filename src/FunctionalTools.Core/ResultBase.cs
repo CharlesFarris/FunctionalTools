@@ -15,6 +15,11 @@ namespace FunctionalTools.Core
         //--------------------------------------------------
         protected ResultBase(ResultState state, [NotNull] string tag)
         {
+            if (state == ResultState.Unknown)
+            {
+                throw new ArgumentOutOfRangeException(nameof(state));
+            }
+
             this.State = state;
             this.Tag = tag ?? throw new ArgumentNullException(nameof(tag));
         }
