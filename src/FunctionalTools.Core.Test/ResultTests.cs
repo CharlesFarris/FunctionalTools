@@ -71,7 +71,7 @@ namespace FunctionalTools.Core.Test
                     Assert.That(
                         () => result.Unwrap(),
                         Throws.InvalidOperationException.With.Property("Message")
-                            .EqualTo(Constants.Result.FailureResultUnwrap));
+                            .EqualTo(Constants.ErrorMessages.FailureResultUnwrap));
                 }
 
                 // use case: custom tag
@@ -80,7 +80,7 @@ namespace FunctionalTools.Core.Test
                     Assert.That(
                         () => result.Unwrap(),
                         Throws.InvalidOperationException.With.Property("Message")
-                            .EqualTo($"{Constants.Result.FailureResultUnwrap} Tag: tag"));
+                            .EqualTo($"{Constants.ErrorMessages.FailureResultUnwrap} Tag: tag"));
                 }
             });
         }

@@ -29,13 +29,12 @@ namespace FunctionalTools.Core
 
             return result;
         }
-        
+
         //--------------------------------------------------
         [NotNull]
         public static Result<T> ToResult<T>([NotNull] T value, [CanBeNull] string tag = null)
         {
             return Result<T>.Success(value, tag);
         }
-
     }
 }

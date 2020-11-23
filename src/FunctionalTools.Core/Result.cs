@@ -19,8 +19,8 @@ namespace FunctionalTools.Core
                 ? this._value
                 : throw new InvalidOperationException(
                     string.IsNullOrEmpty(this.Tag)
-                        ? Constants.Result.FailureResultUnwrap
-                        : $"{Constants.Result.FailureResultUnwrap} Tag: {this.Tag}");
+                        ? Constants.ErrorMessages.FailureResultUnwrap
+                        : $"{Constants.ErrorMessages.FailureResultUnwrap} Tag: {this.Tag}");
         }
 
         //--------------------------------------------------
@@ -38,7 +38,7 @@ namespace FunctionalTools.Core
             var validTag = tag.ToSafeString();
             return new Result<T>(ResultState.Success, validTag, value);
         }
-        
+
         [CanBeNull] private readonly T _value;
     }
 }
