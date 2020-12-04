@@ -15,15 +15,17 @@ namespace FunctionalTools.Core.Test
             {
                 // use case: default tag
                 {
-                    var result = Result<object>.Failure();
+                    var result = Result<object>.Failure(Error.None);
                     Assert.That(result, Is.Not.Null);
                     Assert.That(result.State, Is.EqualTo(ResultState.Failure));
                     Assert.That(result.Tag, Is.EqualTo(string.Empty));
+                    Assert.That(result.IsFailure, Is.True);
+                    Assert.That(result.IsSuccess, Is.False);
                 }
 
                 // use case: custom tag
                 {
-                    var result = Result<object>.Failure(tag: "tag");
+                    var result = Result<object>.Failure(Error.None, tag: "tag");
                     Assert.That(result, Is.Not.Null);
                     Assert.That(result.State, Is.EqualTo(ResultState.Failure));
                     Assert.That(result.Tag, Is.EqualTo("tag"));
@@ -45,6 +47,8 @@ namespace FunctionalTools.Core.Test
                     Assert.That(result.State, Is.EqualTo(ResultState.Success));
                     Assert.That(result.Tag, Is.EqualTo(string.Empty));
                     Assert.That(value, Is.EqualTo(result.Unwrap()));
+                    Assert.That(result.IsFailure, Is.False);
+                    Assert.That(result.IsSuccess, Is.True);
                 }
 
                 // use case: custom tag
@@ -67,7 +71,7 @@ namespace FunctionalTools.Core.Test
             {
                 // use case: default tag
                 {
-                    var result = Result<object>.Failure();
+                    var result = Result<object>.Failure(Error.None);
                     Assert.That(
                         () => result.Unwrap(),
                         Throws.InvalidOperationException.With.Property("Message")
@@ -76,7 +80,7 @@ namespace FunctionalTools.Core.Test
 
                 // use case: custom tag
                 {
-                    var result = Result<object>.Failure(tag: "tag");
+                    var result = Result<object>.Failure(Error.None, tag: "tag");
                     Assert.That(
                         () => result.Unwrap(),
                         Throws.InvalidOperationException.With.Property("Message")

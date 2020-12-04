@@ -25,14 +25,14 @@ namespace FunctionalTools.Core.Test
                 {
                     Assert.That(
                         // ReSharper disable once AssignNullToNotNullAttribute
-                        () => Result<object>.Failure().OnFailure(action: null),
+                        () => Result<object>.Failure(Error.None).OnFailure(action: null),
                         Throws.ArgumentNullException.With.Property("ParamName").EqualTo("action"));
                 }
 
                 // use case:  failure action called if failure
                 {
                     var failureActionCalled = false;
-                    var _ = Result<object>.Failure()
+                    var _ = Result<object>.Failure(Error.None)
                         .OnFailure(result => { failureActionCalled = true; });
                     Assert.That(failureActionCalled, Is.True);
                 }
@@ -83,12 +83,22 @@ namespace FunctionalTools.Core.Test
                 {
                     var result = default(object).ToResultNotNull();
                     Assert.That(result.State, Is.EqualTo(ResultState.Failure));
+                    Assert.That(result.Error.Message, Is.EqualTo("Value cannot be null."));
+                    Assert.That(result.Tag, Is.EqualTo(string.Empty));
+                }
+                
+                // use case: fail on null value default tag
+                {
+                    var result = default(object).ToResultNotNull("custom message");
+                    Assert.That(result.State, Is.EqualTo(ResultState.Failure));
+                    Assert.That(result.Error.Message, Is.EqualTo("custom message"));
                     Assert.That(result.Tag, Is.EqualTo(string.Empty));
                 }
 
                 // use case: fail on null value custom tag
                 {
                     var result = default(object).ToResultNotNull(tag: "tag");
+                    Assert.That(result.Error.Message, Is.EqualTo("Value cannot be null."));
                     Assert.That(result.State, Is.EqualTo(ResultState.Failure));
                     Assert.That(result.Tag, Is.EqualTo("tag"));
                 }

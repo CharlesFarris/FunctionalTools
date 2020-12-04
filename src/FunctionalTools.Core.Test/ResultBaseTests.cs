@@ -21,7 +21,7 @@ namespace FunctionalTools.Core.Test
         private sealed class TestResult : ResultBase
         {
             public TestResult(ResultState state)
-                : base(state, tag: "")
+                : base(state, tag: "", Error.None)
             {
             }
         }

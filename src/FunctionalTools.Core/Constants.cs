@@ -9,6 +9,8 @@ namespace FunctionalTools.Core
             [NotNull] public const string FailureResultUnwrap = "State is failure.";
 
             [NotNull] public const string MaybeHasNoValue = "Has no value.";
+
+            [NotNull] public const string InvalidResultState = "Invalid result state.";
         }
     }
 }
